@@ -18,14 +18,7 @@ public:
     }
 };
 
-void insertAthead(Node *&head, int val)
-{
-    Node *new_node = new Node(val);
-    new_node->next = head;
-    head = new_node;
-}
-
-void display(Node *head)
+void display(Node* head)
 {
     Node *ptr = head;
     cout<<"||";
@@ -41,6 +34,12 @@ void display(Node *head)
     }
 }
 
+void insertAthead(Node *&head, int val)
+{
+    Node *new_node = new Node(val);
+    new_node->next = head;
+    head = new_node;
+}
 void insertAtend(Node *&head, int val)
 {
     // cout<<head<<" "<<val;
@@ -56,7 +55,6 @@ void insertAtend(Node *&head, int val)
     //   cout<<ptr-val;
     ptr->next = new_node;
 }
-
 void insertAtpos(Node *&head, int val, int pos)
 {
     Node *new_node = new Node(val);
@@ -94,7 +92,7 @@ void deleteAtend(Node* &head){
     ptr=ptr->next;
     }
     
-     cout<< ptr->val;
+    //  cout<< ptr->val;
      delete ptr->next;
     //  cout<<"\n freeeeee"<<ptr->next;
     ptr->next=NULL;
@@ -102,7 +100,28 @@ void deleteAtend(Node* &head){
    
 
 }
+void deleteAtPos(Node* &head,int pos){
+Node* ptr = head;
+Node* temp=NULL;
 
+for(int i=1;i<pos-1;i++){
+    // cout<<i;
+    ptr=ptr->next;
+
+// cout<<ptr->val;
+    
+}
+// cout<<"==============================="<<endl;
+// cout<<"val= "<<ptr->val<<" now ptr="<<ptr<<endl;//33 b
+ptr=ptr->next;
+temp=ptr->next;
+ptr->next=temp->next;
+// cout<<"val= "<<ptr->val<<" now ptr ="<<ptr<<endl;//78 b c
+
+
+ptr=ptr->next;
+// cout<<"val= "<<ptr->val<<" now ptr ="<<ptr<<endl;//22 c
+}
 
 int main()
 {
@@ -118,10 +137,15 @@ int main()
     display(head);
     deleteAthead(head);
     display(head);
+    cout<<"================\n  listend element deleted";
+
     deleteAtend(head);
     display(head);
+       cout<<"================\n";
     //  cout<<n->next <<"  "<<n->val;
-
+    deleteAtPos(head,2);
+    cout<<"================\nlocation 2 element deleted";
+    display(head);
     getch();
     return 0;
 }
